@@ -14,7 +14,7 @@ const [ advice, setAdvice] = useState('');
 
   });
   
-  fetchAdvice = () => {
+  const fetchAdvice = () => {
 
     axios.get('https://api.adviceslip.com/advice')
 
