@@ -1,23 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
 import './App.css';
 
-class App extends React.Component {
+const App = () => {
 
-  state = {
+const [ advice, setAdvice] = useState('');
 
-    advice: '',
+ useEffect(() => {
 
-  }
+  fetchAdvice();
 
-  componentDidMount() {
-
-    this.fetchAdvice();
-
-  }
-
+  });
+  
   fetchAdvice = () => {
 
     axios.get('https://api.adviceslip.com/advice')
@@ -26,7 +22,7 @@ class App extends React.Component {
 
         const { advice } = response.data.slip;
 
-        this.setState({ advice });
+        setAdvice({ advice });
 
       })
 
@@ -38,7 +34,7 @@ class App extends React.Component {
 
   }
 
-  render() {
+
 
     return (
 
@@ -46,9 +42,9 @@ class App extends React.Component {
 
         <div className="card">
 
-          <h1 className="heading">{this.state.advice}</h1>
+          <h1 className="heading">{advice}</h1>
 
-          <button className="button" onClick={this.fetchAdvice}>
+          <button className="button" onClick={fetchAdvice}>
 
             <span>GIVE ME ADVICE!</span>
 
@@ -62,6 +58,6 @@ class App extends React.Component {
 
   }
 
-}
+
 
 export default App;
