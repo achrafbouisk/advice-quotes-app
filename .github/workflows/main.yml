@@ -1,0 +1,36 @@
+name: build # Name Action Build
+
+on: [push]  # Trigger on push
+
+jobs:
+
+  run:
+
+    runs-on: ubuntu-latest                         # Run on Ubuntu Docker image
+
+    steps:
+
+    - name: Checkout Repo                          # Checkout repo
+
+      uses: actions/checkout@v1
+
+    - name: Use Node.js                            # Configure Node.js
+
+      uses: actions/setup-node@v1
+
+      with:
+
+        node-version: '12.9'                       # Set Node.js Version
+
+        registry-url: 'https://registry.npmjs.org' # Set Node.js reigistry
+
+    
+
+
+
+    - name: Deploy                                # Install dependancies
+
+      run: npm run deploy
+
+
+
